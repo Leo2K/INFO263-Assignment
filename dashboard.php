@@ -16,6 +16,9 @@ if(!isset($_SESSION['user_id'])) {
 </head>
 <body>
 <p align="right"> <a href="logout.php">Logout</a></p>
+<a href="createEvent.php">Create a New Event</a>
+
+
 
 </body>
 </html>
