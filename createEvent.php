@@ -54,13 +54,10 @@ include "config.php";
         </div>
         <div class="form-group">
             <label>Week of the year</label>
-            <select id="sel_week">
+            <select id="sel_week" name="sel_week">
 
             </select>
         </div>
-        <script type="text/javascript">
-            document.getElementById('sel_week').value = "<?php echo $_GET['sel_week'];?>";
-        </script>
         <div class="form-group">
             <label>Select Year</label>
             <input type="text" name="year" id="year" class="form-control" required />
@@ -79,7 +76,7 @@ include "config.php";
         </div>
         <div class="form-group">
             <label>Select Groups</label>
-            <select id="sel_group" name="sel_group" multiple size="10">
+            <select id="sel_group" name="sel_group">
                 <option value="0">- Select -</option>
                 <?php
                 // Fetch Room
@@ -99,6 +96,7 @@ include "config.php";
             <input type="submit" name="createevent" id="createevent" value="Create Event" class="btn btn-primary"/>
         </div>
     </form>
+    <p> <a href="dashboard.php">Back to Dashboard</a></p>
 </div>
 <script type="text/javascript">
     var count = 0;
@@ -107,11 +105,13 @@ include "config.php";
         document.getElementById("sel_week").innerHTML += "<option value='" + count + "'>" + count + "</option>";
     }
 
+
 </script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('#eventform').submit(function(e) {
             e.preventDefault();
+            console.log( $( this ).serialize() );
             $.ajax({
                 type: "POST",
                 url: 'newEvent.php',
@@ -129,8 +129,6 @@ include "config.php";
                     {
                         alert('Invalid input');
                     }
-
-
                 }
             });
         });
@@ -138,7 +136,3 @@ include "config.php";
 </script>
 </body>
 </html>
-
-
-
-
