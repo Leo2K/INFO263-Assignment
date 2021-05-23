@@ -21,9 +21,10 @@ if (mysqli_query($conn, $query)) {
     echo json_encode(array('success' => 0));
 }
 
-$query = "select * from front_event";
+$query = "select event_id from front_event where event_name = '$assessment_name'";
 $result = mysqli_query($conn, $query);
-$event_id = mysqli_num_rows($result);
+$row = mysqli_fetch_array($result);
+$event_id = $row['event_id'];
 
 $query = "select group_id from front_group where machine_group in ('$machine_groups')";
 $result = mysqli_query($conn, $query);
@@ -60,8 +61,7 @@ $query = "insert into front_action (event_id, time_offset, cluster_id, activate)
 if (mysqli_query($conn, $query)) {
 
 } else {
-    $success = "0";
-    echo "Error: " . $query . "<br>" . mysqli_error($conn);
+    echo json_encode(array('success' => 0));
 }
 $query = "insert into front_action (event_id, time_offset, cluster_id, activate) values ('$event_id', '$assess_time', 3, 1);";
 if (mysqli_query($conn, $query)) {
