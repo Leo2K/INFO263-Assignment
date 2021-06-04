@@ -83,11 +83,10 @@ include "config.php";
                 $query = "SELECT * FROM front_group";
                 $result = mysqli_query($conn, $query);
                 while($row = mysqli_fetch_assoc($result) ){
-                    $id = $row['group_id'];
                     $name = $row['machine_group'];
 
                     // Option
-                    echo "<option value='".$id."' >".$name."</option>";
+                    echo "<option value='".$name."' >".$name."</option>";
                 }
                 ?>
             </select>
@@ -119,6 +118,7 @@ include "config.php";
                 success: function(response)
                 {
                     var jsonData = JSON.parse(response);
+                    console.log(jsonData);
 
                     if (jsonData.success == "1")
                     {

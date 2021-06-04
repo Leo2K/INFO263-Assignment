@@ -26,10 +26,16 @@ $result = mysqli_query($conn, $query);
 $row = mysqli_fetch_array($result);
 $event_id = $row['event_id'];
 
+$group_ids = array();
 $query = "select group_id from front_group where machine_group in ('$machine_groups')";
 $result = mysqli_query($conn, $query);
-$group_ids = mysqli_fetch_array($result);
-$count = mysqli_num_rows($result);
+while($row = $result->fetch_assoc()) {
+    foreach ($result as $row) {
+        array_push($group_ids, $row["group_id"]);
+    }
+}
+//$group_ids = mysqli_fetch_array($result);
+$count = count($group_ids);
 
 
 
@@ -40,9 +46,15 @@ if (mysqli_query($conn, $query)) {
     echo json_encode(array('success' => 0));
 }
 
+$query = "";
 for ($i = 0; $i < $count; $i++) {
-    $query = "insert into front_daily (event_id, group_id, day_of_week, start_time) values ('$event_id', '$group_ids[i]', '$week', '$start_time');";
-    mysqli_query($conn, $query);
+    $current = $group_ids[$i];
+    $query .= "insert into front_daily (event_id, group_id, day_of_week, start_time) values ('$event_id', '$current', '$week', '$start_time');";
+}
+if (mysqli_multi_query($conn, $query)) {
+
+} else {
+    echo json_encode(array('success' => 0));
 }
 
 $query = "insert into front_action (event_id, time_offset, cluster_id, activate) values ('$event_id', '$time_offset', 3, 0);";
