@@ -26,6 +26,19 @@ $.ajax({
             date.innerHTML = event[i].date;
             var time  = newRow.insertCell(5);
             time.innerHTML = event[i].time;
+            var edit  = newRow.insertCell(6);
+
+            var newButton1  = document.createElement("BUTTON");
+            newButton1.id = name.innerHTML + "," + eventId.innerHTML + "," +
+                cluster.innerHTML + "," + group.innerHTML + "," + date.innerHTML + "," + time.innerHTML;
+            newButton1.innerHTML = "Edit";
+            edit.appendChild(newButton1);
+
+            newButton1.addEventListener("click", function(e) {
+                localStorage.setItem("event_details", this.id);
+                location.replace("edit.php");
+            });
+
         }
 
     }

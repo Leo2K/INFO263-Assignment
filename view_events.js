@@ -38,8 +38,6 @@ $.ajax({
                         type: 'POST',
                         data: "event_id=" + this.id,
                         success: function(res) {
-                            var jsonData = JSON.parse(res)
-                            console.log(jsonData);
                             location.reload();
                         }
                     });

@@ -7,6 +7,7 @@ $assessment_name = $_POST['assessment_name'];
 $machine_groups = $_POST['sel_group'];
 $cluster_id = $_POST['sel_cluster'];
 $week = $_POST['sel_week'];
+$day = $_POST['sel_day'];
 $year = $_POST['year'];
 $start_time = $_POST['start_time'];
 $time_offset = $_POST['time_offset'];
@@ -49,7 +50,7 @@ if (mysqli_query($conn, $query)) {
 $query = "";
 for ($i = 0; $i < $count; $i++) {
     $current = $group_ids[$i];
-    $query .= "insert into front_daily (event_id, group_id, day_of_week, start_time) values ('$event_id', '$current', '$week', '$start_time');";
+    $query .= "insert into front_daily (event_id, group_id, day_of_week, start_time) values ('$event_id', '$current', '$day', '$start_time');";
 }
 if (mysqli_multi_query($conn, $query)) {
 
