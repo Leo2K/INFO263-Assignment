@@ -2,7 +2,7 @@
 require_once("config.php");
 
 session_start();
-
+//checks if user is currently logged in
 if (isset($_SESSION['user_id'])) {
     header('location: dashboard.php');
 }

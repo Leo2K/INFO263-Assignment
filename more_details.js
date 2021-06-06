@@ -27,13 +27,13 @@ $.ajax({
             var time  = newRow.insertCell(5);
             time.innerHTML = event[i].time;
             var edit  = newRow.insertCell(6);
-
+            //creates a new button for each specific event and sets all its information to the button id
             var newButton1  = document.createElement("BUTTON");
             newButton1.id = name.innerHTML + "," + eventId.innerHTML + "," +
                 cluster.innerHTML + "," + group.innerHTML + "," + date.innerHTML + "," + time.innerHTML;
             newButton1.innerHTML = "Edit";
             edit.appendChild(newButton1);
-
+            // event listener for each button
             newButton1.addEventListener("click", function(e) {
                 localStorage.setItem("event_details", this.id);
                 location.replace("edit.php");

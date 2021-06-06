@@ -101,6 +101,7 @@ if(!isset($_SESSION['user_id'])) {
 
 </script> -->
 <script type="text/javascript">
+    //ajax request on form submit to edit an event
     $(document).ready(function() {
         $('#eventform').submit(function(e) {
             e.preventDefault();
@@ -113,7 +114,7 @@ if(!isset($_SESSION['user_id'])) {
                 {
                     var jsonData = JSON.parse(response);
                     console.log(jsonData);
-
+                    // Checks if databases requests were valid
                     if (jsonData.success == "1")
                     {
                         alert('Success!');

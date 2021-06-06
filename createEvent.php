@@ -111,6 +111,7 @@ if(!isset($_SESSION['user_id'])) {
 
 </script>
 <script type="text/javascript">
+    //ajax request on form submit to create an event
     $(document).ready(function() {
         $('#eventform').submit(function(e) {
             e.preventDefault();
@@ -123,9 +124,10 @@ if(!isset($_SESSION['user_id'])) {
                 {
                     var jsonData = JSON.parse(response);
                     console.log(jsonData);
-
+                    // check is if the databases requests are valid
                     if (jsonData.success == "1")
                     {
+                        // route to the dashboard
                         alert('Success!');
                         location.href = 'dashboard.php';
                     }
