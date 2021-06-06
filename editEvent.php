@@ -62,9 +62,8 @@ if ($machine_groups != "-1") {
     $row = mysqli_fetch_array($result);
     $group_id2 = $row['group_id'];
 
-    $query = "update front_daily set group_id = '$group_id1' where event_id = '$details[1]' and group_id = '$group_id2' and start_time = '$details[5]'";
-
-    
+    $query = "update front_daily set group_id = '$group_id1' where event_id = '$details[1]' and group_id = '$group_id2'";
+    mysqli_query($conn, $query);
 }
 
 
